@@ -2,11 +2,18 @@
 
 import Link from "next/link"
 import { signIn, signOut, useSession } from "next-auth/react"
+import { api } from "~/trpc/react"
 
 
 function AuthButton() {
     const { data: session } = useSession()
 
+    const userQuery = api.user.getRole.useQuery({
+        id: session?.user.id ?? ""
+    })
+
+
+    console.log(userQuery)
     if (session) {
         return (
             <>
