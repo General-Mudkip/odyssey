@@ -14,21 +14,13 @@ export const metadata: Metadata = {
     icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default async function RootLayout({
-    children,
+export default async function RootLayout({ children,
 }: Readonly<{ children: React.ReactNode }>) {
     const session = await getServerAuthSession();
 
-    // TODO: Try and see if there's a better way to implement this new user flow.
-    console.log(session?.user)
-    if (session?.user.role == "None") {
-        console.log("This person needs to FLOW.")
-
-    }
-
     return (
         <html lang="en" className={`${GeistSans.variable}`}>
-            <body>
+            <body className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2563eb] to-[#1e3a8a] text-white">
                 <SessionProvider session={session}>
                     <TRPCReactProvider>
                         <NavMenu />

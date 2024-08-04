@@ -3,17 +3,27 @@
 import Link from "next/link"
 import { signIn, signOut, useSession } from "next-auth/react"
 import { api } from "~/trpc/react"
+import { redirect, usePathname } from "next/navigation"
+import { useEffect } from "react"
 
 
 function AuthButton() {
     const { data: session } = useSession()
+    const pathname = usePathname()
 
     const userQuery = api.user.getRole.useQuery({
         id: session?.user.id ?? ""
     })
 
+    useEffect(() => {
+        if (userQuery.isFetched) {
+            if (userQuery!.data!.role == "None" && pathname != "/new-user") {
+                redirect("/new-user")
+            }
+        }
+    })
 
-    console.log(userQuery)
+
     if (session) {
         return (
             <>
