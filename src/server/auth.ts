@@ -5,6 +5,7 @@ import {
     type NextAuthOptions,
 } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
+import GitHubProvider from "next-auth/providers/github"
 
 import { env } from "~/env";
 import { db } from "~/server/db";
@@ -46,7 +47,12 @@ export const authOptions: NextAuthOptions = {
         }),
     },
     adapter: PrismaAdapter(db) as Adapter,
-    providers: []
+    providers: [
+        GitHubProvider({
+            clientId: process.env.GITHUB_ID ?? "",
+            clientSecret: process.env.GITHUB_SECRET ?? "",
+        })
+    ]
 };
 
 /**
