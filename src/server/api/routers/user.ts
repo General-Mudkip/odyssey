@@ -17,5 +17,18 @@ export const userRouter = createTRPCRouter({
                     id: input.id
                 }
             })
+        }),
+
+    setRole: protectedProcedure
+        .input(z.object({ id: z.string(), role: z.string() }))
+        .mutation(({ input }) => {
+            return db.user.update({
+                where: {
+                    id: input.id
+                },
+                data: {
+                    role: input.role
+                }
+            })
         })
 })
