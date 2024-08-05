@@ -17,7 +17,7 @@ function AuthButton() {
 
     useEffect(() => {
         if (userQuery.isFetched) {
-            if (userQuery!.data!.role == "None" && pathname != "/new-user") {
+            if (userQuery?.data!.role == "None" && pathname != "/new-user") {
                 redirect("/new-user")
             }
         }

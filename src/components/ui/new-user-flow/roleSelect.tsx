@@ -43,7 +43,7 @@ export default function RoleSelect({ setFlowStage }) {
 
     return (
         <>
-            <h3 className="text-xl">Are you a parent or child?</h3>
+            <h3 className="text-center text-xl">Are you a parent or child?</h3>
 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">

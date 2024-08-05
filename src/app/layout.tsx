@@ -20,7 +20,7 @@ export default async function RootLayout({ children,
 
     return (
         <html lang="en" className={`${GeistSans.variable}`}>
-            <body className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2563eb] to-[#1e3a8a] text-white">
+            <body className="flex max-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2563eb] to-[#1e3a8a] text-white">
                 <SessionProvider session={session}>
                     <TRPCReactProvider>
                         <NavMenu />
