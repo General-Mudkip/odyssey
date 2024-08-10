@@ -55,6 +55,9 @@ model User {
     role     String  @default("None")
     Family   Family? @relation("Family Members", fields: [familyId], references: [id])
     familyId String?
+
+    createdQuests   Quest[] @relation("Quest Creator")
+    completedQuests Quest[] @relation("Quest Completer")
 }
 
 model VerificationToken {
@@ -70,4 +73,20 @@ model Family {
     created DateTime @default(now())
     name    String
     users   User[]   @relation("Family Members")
+}
+
+model Quest {
+    id              String    @id @default(cuid())
+    created         DateTime  @default(now())
+    createdByUser   User      @relation("Quest Creator", map: "Created", fields: [creatorId], references: [id])
+    completedByUser User?     @relation("Quest Completer", map: "Completed", fields: [completerId], references: [id])
+    due             DateTime?
+    completedDate   DateTime?
+    completed       Boolean   @default(false)
+    name            String
+    description     String?
+    bounty          String
+
+    creatorId   String
+    completerId String?
 }

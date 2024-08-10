@@ -17,5 +17,16 @@ export const familyRouter = createTRPCRouter({
                     name: input.name
                 }
             })
+        }),
+
+    getChildren: protectedProcedure
+        .input(z.object({ id: z.string() }))
+        .query(({ input }) => {
+            return db.user.findMany({
+                where: {
+                    familyId: input.id,
+                    role: "Child"
+                }
+            })
         })
 })

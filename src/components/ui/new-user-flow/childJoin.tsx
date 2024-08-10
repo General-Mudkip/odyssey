@@ -14,7 +14,7 @@ const formSchema = z.object({
     familyId: z.string()
 })
 
-export default function ChildJoinFamily({ setFlowStage }) {
+export default function ChildJoinFamily() {
     const { data: session } = useSession()
     const [invalidFamily, setInvalidFamily] = useState(false)
 

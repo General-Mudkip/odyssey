@@ -11,7 +11,7 @@ function AuthButton() {
     const { data: session } = useSession()
     const pathname = usePathname()
 
-    const userQuery = api.user.getRole.useQuery({
+    const userQuery = api.user.getUser.useQuery({
         id: session?.user.id ?? ""
     })
 
